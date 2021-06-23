@@ -2,7 +2,9 @@ const { expect } = require('chai');
 const session = require('supertest-session');
 const {model, server} = require('../src/app.js');
 
+//NO ROMPAN NADAAA
 
+//FRAGIL: NO TOCAR || TOCAR? ?? ? ?? ? ? ?? ?? ? ?? ? ?  
 describe('model ', function(){
 
     beforeEach(() => {
@@ -10,16 +12,16 @@ describe('model ', function(){
             model.reset();
         }
     });
-
-    xit('must have a propertie `clients` as a object', function(){
+    
+    it('must have a propertie `clients` as a object', function(){
         expect(model).to.have.property('clients').and.to.be.an('object');
     })
 
     describe('must have a reset method for resetting the model ', function(){
-        xit('must be a function', function(){
+        it('must be a function', function(){
             expect(model.reset).to.be.a('function');
         })
-        xit('must reset clients to {}', function(){
+        it('must reset clients to {}', function(){
             model.clients = {javier: 'https://github.com/JavierBalonga', comment: 'aca me podes heatear tranquilo ;)'}
             model.reset();
             expect(model.clients).to.be.deep.equal({});
@@ -27,19 +29,19 @@ describe('model ', function(){
     })
 
     describe('must have an addAppointment method to add appointments to that client', function(){
-        xit('must be a function', function(){
+        it('must be a function', function(){
             expect(model.addAppointment).to.be.a('function');
         })
-        xit('must add clients as a properties', function(){
+        it('must add clients as a properties', function(){
             model.addAppointment('javier', {date:'22/10/2020 16:00'});
             expect(model.clients).to.have.property('javier')
         })
-        xit('must add clients as an array', function(){
+        it('must add clients as an array', function(){
             model.addAppointment('javier', {date:'22/10/2020 16:00'});
             expect(model.clients).to.have.property('javier');
             expect(model.clients.javier instanceof Array).to.be.true;
         })
-        xit('must be adding multiple appointments in the order as they are added, and must be handling multiple clients', function(){
+        it('must be adding multiple appointments in the order as they are added, andle must be handling multip clients', function(){
             model.addAppointment('javier', {date:'22/10/2020 14:00'});
             expect(model.clients.javier[0]).to.have.property('date').to.be.equal('22/10/2020 14:00');
             model.addAppointment('javier', {date:'22/10/2020 16:00'});
@@ -49,7 +51,7 @@ describe('model ', function(){
             model.addAppointment('alejandro', {date:'22/10/2020 12:00'});
             expect(model.clients.alejandro[1]).to.have.property('date').to.be.equal('22/10/2020 12:00');
         })
-        xit('the appointments must have a initial status, and to be `pending`', function(){
+        it('the appointments must have a initial status, and to be `pending`', function(){
             model.addAppointment('javier', {date:'22/10/2020 14:00'});
             model.addAppointment('javier', {date:'22/10/2020 16:00'});
             model.addAppointment('alejandro', {date:'22/10/2020 11:00'});
@@ -72,12 +74,12 @@ describe('model ', function(){
             }
         });
 
-        xit('they must be functions', function(){
+        it('they must be functions', function(){
             expect(model.attend).to.be.a('function');
             expect(model.expire).to.be.a('function');
             expect(model.cancel).to.be.a('function');
         })
-        xit('`attend` must receive a name and a date, and change the status to `attended`', function(){
+        it('`attend` must receive a name and a date, and change the status to `attended`', function(){
             model.attend('javier',    '22/10/2020 14:00');
             model.attend('javier',    '22/10/2020 16:00');
             model.attend('alejandro', '22/10/2020 11:00');
@@ -87,7 +89,7 @@ describe('model ', function(){
             expect(model.clients.alejandro[0]).to.have.property('status').to.be.equal('attended');
             expect(model.clients.alejandro[1]).to.have.property('status').to.be.equal('attended');
         })
-        xit('`expire` must receive a name and a date, and change the status to `expired`', function(){
+        it('`expire` must receive a name and a date, and change the status to `expired`', function(){
             model.expire('javier',    '22/10/2020 14:00');
             model.expire('javier',    '22/10/2020 16:00');
             model.expire('alejandro', '22/10/2020 11:00');
@@ -97,7 +99,7 @@ describe('model ', function(){
             expect(model.clients.alejandro[0]).to.have.property('status').to.be.equal('expired');
             expect(model.clients.alejandro[1]).to.have.property('status').to.be.equal('expired');
         })
-        xit('`cancel` must receive a name and a date, and change the status to `cancelled`', function(){
+        it('`cancel` must receive a name and a date, and change the status to `cancelled`', function(){
             model.cancel('javier',    '22/10/2020 14:00');
             model.cancel('javier',    '22/10/2020 16:00');
             model.cancel('alejandro', '22/10/2020 11:00');
@@ -107,7 +109,7 @@ describe('model ', function(){
             expect(model.clients.alejandro[0]).to.have.property('status').to.be.equal('cancelled');
             expect(model.clients.alejandro[1]).to.have.property('status').to.be.equal('cancelled');
         })
-        xit('must be able to handle multiple appointments with multiple states', function(){
+        it('must be able to handle multiple appointments with multiple states', function(){
             model.attend('javier',    '22/10/2020 16:00');
             model.expire('alejandro', '22/10/2020 11:00');
             model.cancel('alejandro', '22/10/2020 12:00');
@@ -131,10 +133,10 @@ describe('model ', function(){
             }
         });
 
-        xit('must be a function', function(){
+        it('must be a function', function(){
             expect(model.erase).to.be.a('function');
         })
-        xit('it must receive a name and if receive a date must erase the appointment with that date', function(){
+        it('it must receive a name and if receive a date must erase the appointment with that date', function(){
             model.erase('javier', '22/10/2020 14:00');
             expect(model.clients.javier).to.be.deep.equal([ { date: '22/10/2020 16:00', status: 'attended' } ]);
             model.erase('javier', '22/10/2020 16:00');
@@ -143,8 +145,10 @@ describe('model ', function(){
             expect(model.clients.alejandro).to.be.deep.equal([ { date: '22/10/2020 12:00', status: 'cancelled' } ]);
             model.erase('alejandro', '22/10/2020 12:00');
             expect(model.clients.alejandro).to.be.deep.equal([]);
+            /* model.erase('alejandro');
+            expect(model.clients.alejandro).to.be.deep.equal([]); */
         })
-        xit('it must receive a name and if receive a status must erase all the appointments whith that status', function(){
+        it('it must receive a name and if receive a status must erase all the appointments whith that status', function(){
             model.erase('javier', 'attended');
             expect(model.clients.javier).to.be.deep.equal([ { date: '22/10/2020 14:00', status: 'pending' } ]);
             model.erase('alejandro', 'cancelled');
@@ -164,18 +168,18 @@ describe('model ', function(){
                 model.cancel('alejandro', '22/10/2020 12:00');
             }
         });
-
-        xit('must be a function', function(){
+        //TAMOS POR ACA
+        it('must be a function', function(){
             expect(model.getAppointments).to.be.a('function');
         })
-        xit('must return an a array with the appointments of the client', function(){
+        it('must return an a array with the appointments of the client', function(){
             let appointments = model.getAppointments('javier');
             expect(appointments).to.be.deep.equal(
                 [{ date: '22/10/2020 14:00', status: 'pending' },
                 { date: '22/10/2020 16:00', status: 'attended' }]
             );
         })
-        xit('if a status was passed, should only return the appointments with that status', function(){
+        it('if a status was passed, should only return the appointments with that status', function(){
             let appointmentsPending = model.getAppointments('javier', 'pending');
             let appointmentsAttended = model.getAppointments('javier', 'attended');
             let appointmentsExpired = model.getAppointments('alejandro', 'expired');
@@ -188,10 +192,10 @@ describe('model ', function(){
     })
 
     describe('must have a metod getClients', function(){
-        xit('must be a function', function(){
+        it('must be a function', function(){
             expect(model.getClients).to.be.a('function');
         })
-        xit('must return an a array with the names of the clients', function(){
+        it('must return an a array with the names of the clients', function(){
             model.addAppointment('javier', {date:'22/10/2020 14:00'});
             model.addAppointment('alejandro', {date:'22/10/2020 12:00'});
             let ret = model.getClients()
@@ -212,7 +216,7 @@ describe('server', () => {
     });
 
     describe('GET /api', function(){
-        xit('responds with the object clients', () => {
+        it('responds with the object clients', () => {
             return agent.get('/api')
             .expect(200)
             .then((res) => {
